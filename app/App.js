@@ -7,18 +7,20 @@ let cardsList = [
     id: 1,
     title: "Read the Book",
     description: "I should read the whole book",
+    color: "#55C3DC",
     status: "in-progress",
     tasks: []
   }, {
-    id: 1,
+    id: 2,
     title: "Write some code",
-    description: "I should write some code",
+    description: "Code along with the samples in the book. The complete source can be found at [github](https://github.com/pro-react)",
+    color: "#3A7E28",
     status: "in-progress",
     tasks: [
       {
         id: 1,
         name: "ContactList Example",
-        done: false
+        done: true
       }, {
         id: 2,
         name: "Kanban Example",
