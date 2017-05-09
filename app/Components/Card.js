@@ -7,9 +7,7 @@ let titlePropType = (props, propName, componentName) => {
     if (props[propName]) {
         let value = props[propName];
         if (typeof value !== 'string' || value.length > 80) {
-            return new Error(
-                `${propName} in ${componentName} is longer than 80 characters`
-            );
+            return new Error(`${propName} in ${componentName} is longer than 80 characters`);
         }
     }
 }
@@ -33,8 +31,14 @@ class Card extends Component {
         if (this.state.showDetails) {
             cardDetails = (
                 <div className="card__details">
-                    <span dangerouslySetInnerHTML={{__html:marked(this.props.description)}}/>
-                    <CheckList cardId={this.props.id} tasks={this.props.tasks}/>
+                    <span
+                        dangerouslySetInnerHTML={{
+                        __html: marked(this.props.description)
+                    }}/>
+                    <CheckList
+                        cardId={this.props.id}
+                        tasks={this.props.tasks}
+                        taskCallbacks={this.props.taskCallbacks}/>
                 </div>
             );
         }
@@ -70,7 +74,8 @@ Card.propTypes = {
     title: titlePropType,
     description: PropTypes.string,
     color: PropTypes.string,
-    takss: PropTypes.arrayOf(PropTypes.object)
+    tasks: PropTypes.arrayOf(PropTypes.object),
+    taskCallbacks: PropTypes.object
 };
 
 export default Card;
