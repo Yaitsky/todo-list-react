@@ -2,12 +2,18 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
+import { Link } from 'react-router';
 import List from './List';
 
 class KanbanBoard extends Component {
     render() {
+        let cardModal = this.props.children && React.cloneElement(this.props.children, {
+            cards: this.props.cards,
+            cardCallbacks: this.props.cardCallbacks
+        });
         return (
             <div className="app">
+                <Link to='/new' className="float-button">+</Link>
                 <List
                     id='todo'
                     title="To Do"
@@ -35,6 +41,7 @@ class KanbanBoard extends Component {
                     .filter((card) => card.status === "done")}
                     taskCallbacks={this.props.taskCallbacks}
                     cardCallbacks={this.props.cardCallbacks}/>
+                    {cardModal}
             </div>
         );
     }
